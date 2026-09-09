@@ -1,232 +1,833 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Js Tech - Serviços Digitais Profissionais</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Js tech — Consultoria de Software &amp; IA</title>
+  <meta name="description" content="Consultoria especializada em arquiteturas modernas, soluções com IA e cloud. Goiânia, GO — Brasil.">
+  <link rel="icon" type="image/png" href="assets/branding/Js tech/favicon_transparent_32x32.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+/* ══════════════════════════════════════════════
+   TOKENS — cores exatas extraídas do SVG da marca
+   bg: #301C39 | blue: #A0D7FF
+══════════════════════════════════════════════ */
+:root {
+  color-scheme: dark;
+
+  --deep:    #1A0D2C;
+  --bg:      #251338;
+  --surface: #301C39;   /* cor exata do logo-favicon.svg */
+  --card:    #3B2248;
+  --border:  #4C2E65;
+  --blt:     #603D80;
+
+  --blue:    #A0D7FF;   /* cor exata do logo-favicon.svg */
+  --blue-hi: #C4E7FF;
+  --blue-lo: rgba(160,215,255,.10);
+  --blue-md: rgba(160,215,255,.22);
+
+  --text:    #EEF3FC;
+  --muted:   #8EA5CC;
+  --dim:     #4E6090;
+
+  --r:    10px;
+  --r-lg: 18px;
+  --shadow:    0 2px 20px rgba(0,0,0,.55);
+  --shadow-lg: 0 10px 50px rgba(0,0,0,.7);
+  --glow:      0 0 36px rgba(160,215,255,.20);
+
+  --fd: 'Raleway', system-ui, sans-serif;
+  --fb: 'DM Sans', system-ui, sans-serif;
+  --fm: 'JetBrains Mono', monospace;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --deep:    #ECE6F8;
+    --bg:      #F8F5FE;
+    --surface: #EEE8FA;
+    --card:    #FFFFFF;
+    --border:  #D9CEEE;
+    --blt:     #C2B0E2;
+    --blue:    #3A6FD8;
+    --blue-hi: #235ABE;
+    --blue-lo: rgba(58,111,216,.08);
+    --blue-md: rgba(58,111,216,.18);
+    --text:    #1A0D2C;
+    --muted:   #5A6595;
+    --dim:     #A2AECE;
+    --shadow:    0 2px 20px rgba(0,0,0,.07);
+    --shadow-lg: 0 10px 50px rgba(0,0,0,.12);
+    --glow:      0 0 36px rgba(58,111,216,.15);
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --deep:    #ECE6F8;
+  --bg:      #F8F5FE;
+  --surface: #EEE8FA;
+  --card:    #FFFFFF;
+  --border:  #D9CEEE;
+  --blt:     #C2B0E2;
+  --blue:    #3A6FD8;
+  --blue-hi: #235ABE;
+  --blue-lo: rgba(58,111,216,.08);
+  --blue-md: rgba(58,111,216,.18);
+  --text:    #1A0D2C;
+  --muted:   #5A6595;
+  --dim:     #A2AECE;
+  --shadow:    0 2px 20px rgba(0,0,0,.07);
+  --shadow-lg: 0 10px 50px rgba(0,0,0,.12);
+  --glow:      0 0 36px rgba(58,111,216,.15);
+}
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:var(--fb)}
+
+/* ── SCROLL PROGRESS ── */
+#sp{position:fixed;top:0;left:0;width:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--blue-hi));z-index:9999;pointer-events:none}
+
+/* ── TYPE ── */
+h1,h2,h3,h4{font-family:var(--fd);color:var(--text);text-wrap:balance;line-height:1.12}
+h1{font-size:clamp(2.4rem,5.5vw,3.9rem);font-weight:800;letter-spacing:-.022em}
+h2{font-size:clamp(1.8rem,3.8vw,2.6rem);font-weight:800;letter-spacing:-.018em}
+h3{font-size:clamp(1.05rem,2vw,1.18rem);font-weight:700}
+h4{font-size:.92rem;font-weight:600}
+p{color:var(--muted)}
+
+.eyebrow{font-family:var(--fm);font-size:.67rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--blue);display:block;margin-bottom:.8rem}
+
+/* ── LAYOUT ── */
+.container{max-width:1160px;margin:0 auto;padding:0 24px}
+section{padding:5.5rem 0}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:11px 26px;border:none;border-radius:var(--r);
+  font-family:var(--fb);font-weight:600;font-size:.92rem;
+  cursor:pointer;text-decoration:none;
+  transition:transform .15s,box-shadow .15s,background .15s,border-color .15s,color .15s}
+.btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+.btn-p{background:var(--blue);color:#1A0D2C;font-weight:700}
+.btn-p:hover{background:var(--blue-hi);transform:translateY(-1px);box-shadow:var(--glow)}
+
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .btn-p{color:#fff}
+}
+:root[data-theme="light"] .btn-p{color:#fff}
+
+.btn-g{background:transparent;color:var(--text);border:1.5px solid rgba(160,215,255,.28)}
+.btn-g:hover{border-color:var(--blue);color:var(--blue)}
+
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .btn-g{border-color:var(--border)}
+  :root:not([data-theme="dark"]) .btn-g:hover{border-color:var(--blue);color:var(--blue)}
+}
+:root[data-theme="light"] .btn-g{border-color:var(--border)}
+:root[data-theme="light"] .btn-g:hover{border-color:var(--blue);color:var(--blue)}
+
+.hero .btn-g{border-color:rgba(160,215,255,.28);color:#EEF3FC}
+.hero .btn-g:hover{border-color:#A0D7FF;color:#A0D7FF}
+
+/* ── HEADER — sempre dark (identidade da marca) ── */
+.hdr{
+  position:fixed;top:0;width:100%;z-index:1000;
+  background:rgba(26,13,44,.88);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid transparent;transition:border-color .3s}
+.hdr.scrolled{border-bottom-color:rgba(160,215,255,.12)}
+.hdr .container{display:flex;align-items:center;justify-content:space-between;height:88px}
+
+/* logo — arquivo landscape 765x625 transparente, escalado pelo width */
+.logo{text-decoration:none;display:flex;align-items:center}
+.logo img{width:190px;height:auto;object-fit:contain}
+
+.hnav{display:flex;align-items:center;gap:2rem}
+.hlinks{display:flex;list-style:none;gap:1.75rem}
+.hlinks a{color:rgba(160,215,255,.6);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.hlinks a:hover{color:#A0D7FF}
+
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hbg span{width:22px;height:2px;background:#A0D7FF;display:block;transition:all .25s}
+
+/* ── MOBILE MENU ── */
+.mob{
+  position:fixed;inset:88px 0 0 0;background:#1A0D2C;z-index:999;
+  padding:2rem 24px;display:flex;flex-direction:column;gap:1.25rem;
+  transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+  border-top:1px solid rgba(160,215,255,.1)}
+.mob.open{transform:translateX(0)}
+.mob a{color:#EEF3FC;text-decoration:none;font-size:1.15rem;font-weight:600;
+  padding:.35rem 0;border-bottom:1px solid rgba(160,215,255,.1)}
+.mob .btn-p{margin-top:.5rem;text-align:center;justify-content:center}
+
+/* ── HERO — wallpaper oficial da marca como background ── */
+.hero{
+  padding:11rem 0 6rem;
+  background:
+    linear-gradient(105deg,
+      rgba(26,13,44,.96) 0%,
+      rgba(26,13,44,.82) 42%,
+      rgba(26,13,44,.50) 100%),
+    url('assets/branding/Js tech/wallpaper_1920x1080.png') 72% center / cover no-repeat;
+  position:relative;overflow:hidden}
+
+/* camada de pattern + glow como suporte visual */
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 55% at 80% 30%,rgba(160,215,255,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 15% 80%,rgba(160,215,255,.04) 0%,transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1.2' fill='%23A0D7FF' opacity='0.08'/%3E%3C/svg%3E")}
+
+.hero .container{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+  position:relative;z-index:1}
+
+.h-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:5px 14px;background:rgba(160,215,255,.08);
+  border:1px solid rgba(160,215,255,.2);border-radius:100px;margin-bottom:1.5rem}
+.h-dot{width:6px;height:6px;border-radius:50%;background:#A0D7FF;
+  animation:pulse 2.4s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.45)}}
+.h-badge .eyebrow{margin:0}
+
+.hero h1{color:#EEF3FC;margin-bottom:1.4rem}
+.h-ac{color:#A0D7FF}
+.hero .hdesc{color:rgba(160,215,255,.55);font-size:1.07rem;line-height:1.75;max-width:50ch;margin-bottom:2.25rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* ── TERMINAL ── */
+.terminal{
+  background:#0C0820;border:1px solid rgba(160,215,255,.15);
+  border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:var(--shadow-lg),0 0 0 1px rgba(255,255,255,.03);
+  font-family:var(--fm)}
+.tbar{background:#110D24;padding:11px 16px;
+  display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid rgba(160,215,255,.1)}
+.tdots{display:flex;gap:6px}
+.tdot{width:10px;height:10px;border-radius:50%}
+.dr{background:#FF5F57}.dy{background:#FFBD2E}.dg{background:#28C840}
+.ttitle{color:#352A5C;font-size:.7rem}
+.tbody{padding:18px 20px;min-height:295px;font-size:.78rem;line-height:1.9}
+.tp{color:#A0D7FF}.tc{color:#EEF3FC}.tm{color:#352A5C}
+.ts{color:#4A3C80}.tx{color:#C4E7FF}.tg{color:#6EE7B7}
+.tcursor{
+  display:inline-block;width:7px;height:13px;
+  background:#A0D7FF;margin-left:2px;vertical-align:text-bottom;
+  animation:blink 1.1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── STATS BAR ── */
+.stats{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-g{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:2.25rem 1.5rem;text-align:center;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--fd);font-weight:800;font-size:2.55rem;
+  color:var(--text);line-height:1;font-variant-numeric:tabular-nums;margin-bottom:.3rem}
+.stat-n em{color:var(--blue);font-style:normal}
+.stat-l{font-size:.82rem;color:var(--muted)}
+
+/* ── SERVICES ── */
+.services{background:var(--bg)}
+.sec-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:3rem}
+.sec-cols h2{max-width:20ch}
+.sec-cols p{font-size:.95rem;max-width:44ch}
+
+.svc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5px;background:var(--border);
+  border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.svc{background:var(--bg);padding:2.25rem;transition:background .2s;position:relative}
+.svc:hover{background:var(--surface)}
+.svc.ac{border-top:2px solid var(--blue)}
+
+.sico{
+  width:48px;height:48px;border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;margin-bottom:1.4rem}
+.ib{background:var(--blue-lo)}.ig{background:rgba(110,231,183,.08)}.ip{background:rgba(167,139,250,.08)}
+.svc h3{margin-bottom:.65rem;font-size:1.05rem}
+.svc>p{font-size:.88rem;line-height:1.65;margin-bottom:1.4rem}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.svc-list li{
+  display:flex;align-items:flex-start;gap:.65rem;
+  font-size:.88rem;color:var(--muted);line-height:1.45}
+.svc-list li::before{
+  content:'✓';color:var(--blue);font-weight:700;
+  font-family:var(--fd);flex-shrink:0;margin-top:.02em}
+
+/* ── PROCESS ── */
+.process{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.steps::before{content:'';position:absolute;top:23px;left:12%;right:12%;
+  height:1px;background:var(--border)}
+.step{text-align:center;padding:0 .75rem;position:relative}
+.step-n{
+  width:48px;height:48px;border-radius:50%;margin:0 auto 1.4rem;
+  background:var(--card);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fm);font-size:.7rem;color:var(--dim);position:relative;z-index:1}
+.step.hi .step-n{background:var(--blue-lo);border-color:var(--blue);color:var(--blue)}
+.step h4{margin-bottom:.4rem;font-size:.92rem}
+.step p{font-size:.8rem}
+
+/* ── ABOUT ── */
+.about{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about .container{display:grid;grid-template-columns:5fr 4fr;gap:5rem;align-items:start}
+.al p{font-size:.96rem;margin-bottom:1.1rem}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.pillar{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem}
+.pi{font-size:1.3rem;margin-bottom:.5rem}
+.pillar h4{margin-bottom:.3rem}
+.pillar p{font-size:.82rem}
+
+/* imagem de marca — instagram_landscape da identidade visual */
+.brand-img-wrap{
+  border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-lg);
+  margin-bottom:1.25rem}
+.brand-img-wrap img{width:100%;display:block}
+
+.metrics{display:flex;flex-direction:column;gap:1rem}
+.mc{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:1.4rem;transition:border-color .2s}
+.mc:hover{border-color:var(--blt)}
+.mclbl{font-family:var(--fm);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.mcdot{width:6px;height:6px;border-radius:50%}
+.mcv{font-family:var(--fd);font-weight:800;font-size:1.9rem;line-height:1;color:var(--text);margin-bottom:.12rem}
+.mcsub{font-size:.8rem;color:var(--muted)}
+.mcbar{margin-top:.8rem;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.mcfill{height:100%;border-radius:2px}
+
+/* ── CONTACT ── */
+.contact{background:var(--bg)}
+.contact .container{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem}
+.cl>p{font-size:.97rem;margin-bottom:2.25rem}
+.cinfo{display:flex;flex-direction:column;gap:1.1rem}
+.ci{display:flex;align-items:center;gap:1rem}
+.ciico{width:42px;height:42px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0}
+.ci h4{font-size:.82rem;margin-bottom:2px}
+.ci a,.ci span{font-size:.9rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.ci a:hover{color:var(--blue)}
+
+.cform{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:2.25rem}
+.cform h3{margin-bottom:1.6rem;font-size:1.05rem}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{margin-bottom:1.15rem}
+.fg label{display:block;font-size:.8rem;font-weight:500;color:var(--text);margin-bottom:.45rem}
+.fg input,.fg textarea,.fg select{
+  width:100%;padding:10px 13px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);color:var(--text);font-family:var(--fb);font-size:.88rem;
+  outline:none;transition:border-color .2s;appearance:none}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--blue)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--dim)}
+.fg textarea{resize:vertical;min-height:110px}
+.fg option{background:var(--card);color:var(--text)}
+.sw{position:relative}
+.sw::after{content:'▾';position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  color:var(--muted);pointer-events:none;font-size:.85rem}
+.bsub{width:100%;justify-content:center;margin-top:.5rem}
+
+/* ── FOOTER — sempre dark (identidade da marca) ── */
+.footer{background:#1A0D2C;border-top:1px solid rgba(160,215,255,.10);padding:4rem 0 1.75rem}
+.foot-g{display:grid;grid-template-columns:2fr 1fr 1fr 1.6fr;gap:3rem;margin-bottom:3rem}
+.fb .logo img{width:160px;height:auto;object-fit:contain}
+.fb p{font-size:.88rem;margin-top:1rem;max-width:30ch;color:rgba(160,215,255,.45)}
+.fc h4{font-size:.84rem;margin-bottom:1.1rem;color:rgba(160,215,255,.65)}
+.fc ul{list-style:none}
+.fc li{margin-bottom:.65rem}
+.fc a{font-size:.86rem;color:rgba(160,215,255,.4);text-decoration:none;transition:color .2s}
+.fc a:hover{color:#A0D7FF}
+.fc span{font-size:.86rem;color:rgba(160,215,255,.4)}
+.foot-b{padding-top:1.75rem;border-top:1px solid rgba(160,215,255,.10);
+  display:flex;align-items:center;justify-content:space-between}
+.foot-b p{font-size:.83rem;color:rgba(160,215,255,.38)}
+.socials{display:flex;gap:.75rem}
+.soc{
+  width:34px;height:34px;background:rgba(160,215,255,.06);
+  border:1px solid rgba(160,215,255,.14);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:.75rem;font-weight:700;
+  color:rgba(160,215,255,.45);font-family:var(--fm);transition:border-color .2s,color .2s}
+.soc:hover{border-color:#A0D7FF;color:#A0D7FF}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .foot-g{grid-template-columns:1fr 1fr}
+  .svc-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  .hnav>ul,.hnav>.btn{display:none}
+  .hbg{display:flex}
+  .hero .container{grid-template-columns:1fr}
+  .terminal{display:none}
+  .sec-cols{grid-template-columns:1fr;gap:1rem}
+  .svc-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .steps::before{display:none}
+  .about .container{grid-template-columns:1fr}
+  .ar{display:none}
+  .contact .container{grid-template-columns:1fr}
+  .stats-g{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:none}
+  .stat:nth-child(3){border-right:1px solid var(--border)}
+  .stat:nth-child(4){border-right:none}
+}
+@media(max-width:560px){
+  section{padding:4rem 0}
+  .svc-grid,.steps,.pillars{grid-template-columns:1fr}
+  .foot-g{grid-template-columns:1fr;gap:2rem}
+  .foot-b{flex-direction:column;gap:1.25rem;text-align:center}
+  .f2{grid-template-columns:1fr}
+  .hero{padding:8.5rem 0 4rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+  </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <img src="assets/js_tech_logo.png" alt="Js Tech Logo">
-            </div>
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
-                <button class="btn-primary">Solicitar Orçamento</button>
-            </nav>
-            <div class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+
+<div id="sp"></div>
+
+<!-- HEADER -->
+<header class="hdr" id="hdr">
+  <div class="container">
+    <a href="#home" class="logo">
+      <img src="assets/branding/Js tech/default_transparent_765x625.png" alt="Js tech">
+    </a>
+    <nav class="hnav">
+      <ul class="hlinks">
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#processo">Processo</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a href="#contato" class="btn btn-p">Solicitar Orçamento</a>
+    </nav>
+    <button class="hbg" id="hbg" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mob" id="mob">
+  <a href="#servicos">Serviços</a>
+  <a href="#processo">Processo</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#contato" class="btn btn-p">Solicitar Orçamento</a>
+</div>
+
+<!-- HERO — background: wallpaper oficial da marca -->
+<section id="home" class="hero">
+  <div class="container">
+    <div>
+      <div class="h-badge">
+        <div class="h-dot"></div>
+        <span class="eyebrow">Consultoria de Software &amp; IA · Goiânia, GO</span>
+      </div>
+      <h1>Arquitetura.<br><span class="h-ac">Inteligência.</span><br>Resultados.</h1>
+      <p class="hdesc">Da cloud architecture ao deploy de soluções com IA — transformamos complexidade técnica em vantagem competitiva para o seu negócio.</p>
+      <div class="hero-ctas">
+        <a href="#contato" class="btn btn-p">Diagnóstico Gratuito</a>
+        <a href="#servicos" class="btn btn-g">Ver Serviços</a>
+      </div>
+    </div>
+
+    <div class="terminal" role="img" aria-label="Demo diagnóstico Js tech">
+      <div class="tbar">
+        <div class="tdots">
+          <div class="tdot dr"></div><div class="tdot dy"></div><div class="tdot dg"></div>
         </div>
-    </header>
+        <span class="ttitle">jstech — diagnóstico@cliente</span>
+      </div>
+      <div class="tbody" id="tout"></div>
+    </div>
+  </div>
+</section>
 
-    <section id="home" class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Transforme seu Negócio Digital</span></h1>
-                <p>Especialistas em desenvolvimento web, business analytics e integração de APIs. Criamos soluções digitais que impulsionam o crescimento do seu negócio.</p>
-                <div class="hero-buttons">
-                    <button class="btn-primary">Solicitar Orçamento</button>
-                    <button class="btn-secondary">Nossos Serviços</button>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/hero_image.png" alt="Digital Services">
-            </div>
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-g container">
+    <div class="stat">
+      <div class="stat-n"><span id="cp">0</span><em>+</em></div>
+      <div class="stat-l">Projetos entregues</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n"><span id="cc">0</span><em>+</em></div>
+      <div class="stat-l">Clientes satisfeitos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n"><span id="cy">0</span></div>
+      <div class="stat-l">Anos no mercado</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">24<em>/7</em></div>
+      <div class="stat-l">Suporte técnico</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="servicos" class="services">
+  <div class="container">
+    <div class="sec-cols">
+      <div>
+        <span class="eyebrow">O que fazemos</span>
+        <h2>Soluções para cada desafio digital</h2>
+      </div>
+      <p>Do MVP ao sistema enterprise — software robusto e escalável, alinhado a objetivos reais de negócio.</p>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc">
+        <div class="sico ib">🌐</div>
+        <h3>Desenvolvimento Web</h3>
+        <p>Criamos sites e aplicações web modernas, responsivas e otimizadas para performance. Utilizamos as mais recentes tecnologias para garantir a melhor experiência do usuário.</p>
+        <ul class="svc-list">
+          <li>HTML, CSS &amp; JavaScript</li>
+          <li>Design Responsivo</li>
+          <li>SEO Otimizado</li>
+          <li>Performance Alta</li>
+        </ul>
+      </div>
+
+      <div class="svc ac">
+        <div class="sico ig">📊</div>
+        <h3>Business Analytics</h3>
+        <p>Transformamos seus dados em insights valiosos para tomada de decisões estratégicas. Dashboards interativos e relatórios personalizados.</p>
+        <ul class="svc-list">
+          <li>Dashboards Interativos</li>
+          <li>Análise de Dados</li>
+          <li>Relatórios Customizados</li>
+          <li>KPIs em Tempo Real</li>
+        </ul>
+      </div>
+
+      <div class="svc">
+        <div class="sico ip">🔌</div>
+        <h3>Integração de APIs</h3>
+        <p>Conectamos seus sistemas e aplicações através de integrações robustas e seguras. Automatizamos processos e melhoramos a eficiência operacional.</p>
+        <ul class="svc-list">
+          <li>APIs RESTful</li>
+          <li>Integrações Seguras</li>
+          <li>Automação de Processos</li>
+          <li>Documentação Completa</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="processo" class="process">
+  <div class="container">
+    <span class="eyebrow">Como trabalhamos</span>
+    <h2 style="margin-top:.75rem;max-width:22ch;margin-bottom:3.5rem">Processo claro, entregas previsíveis</h2>
+    <div class="steps">
+      <div class="step hi">
+        <div class="step-n">01</div>
+        <h4>Diagnóstico</h4>
+        <p>Entendemos seu negócio, stack atual e objetivos de curto e longo prazo.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <h4>Arquitetura</h4>
+        <p>Desenhamos a solução técnica com escolha de stack e gestão de riscos.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <h4>Desenvolvimento</h4>
+        <p>Sprints quinzenais com demos reais, testes e revisão contínua de código.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">04</div>
+        <h4>Deploy</h4>
+        <p>Pipeline automatizado, monitoramento e rollback seguro em produção.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">05</div>
+        <h4>Evolução</h4>
+        <p>Suporte contínuo e iteração baseada em dados reais de uso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="sobre" class="about">
+  <div class="container">
+    <div class="al">
+      <span class="eyebrow">Quem somos</span>
+      <h2 style="margin-top:.75rem;margin-bottom:1.4rem">Software sério, feito por quem entende de negócio</h2>
+      <p>A Js tech nasceu da frustração com projetos que entregam tecnologia bonita sem resultado real. Somos uma consultoria focada em impacto: toda decisão técnica é justificada por um objetivo de negócio claro.</p>
+      <p>Com base em Goiânia e atendendo empresas em todo o Brasil, trabalhamos desde startups em estágio inicial até empresas com sistemas legados que precisam de modernização estruturada.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pi">⚡</div>
+          <h4>Entrega Ágil</h4>
+          <p>Ciclos de 2 semanas com demos reais e visibilidade total do progresso.</p>
         </div>
-    </section>
-
-    <section id="servicos" class="services-section">
-        <div class="container">
-            <h2>Nossos <span class="text-gradient">Serviços</span></h2>
-            <p class="section-description">Oferecemos soluções completas para transformar sua presença digital e otimizar seus processos de negócio</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <img src="assets/web_development_icon.png" alt="Desenvolvimento Web">
-                    </div>
-                    <h3>Desenvolvimento Web</h3>
-                    <p>Criamos sites e aplicações web modernas, responsivas e otimizadas para performance. Utilizamos as mais recentes tecnologias para garantir a melhor experiência do usuário.</p>
-                    <ul>
-                        <li>&#10003; HTML, CSS & JavaScript</li>
-                        <li>&#10003; Design Responsivo</li>
-                        <li>&#10003; SEO Otimizado</li>
-                        <li>&#10003; Performance Alta</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <img src="assets/business_analytics_icon.png" alt="Business Analytics">
-                    </div>
-                    <h3>Business Analytics</h3>
-                    <p>Transformamos seus dados em insights valiosos para tomada de decisões estratégicas. Dashboards interativos e relatórios personalizados.</p>
-                    <ul>
-                        <li>&#10003; Dashboards Interativos</li>
-                        <li>&#10003; Análise de Dados</li>
-                        <li>&#10003; Relatórios Customizados</li>
-                        <li>&#10003; KPIs em Tempo Real</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <img src="assets/api_integration_icon.png" alt="Integração de APIs">
-                    </div>
-                    <h3>Integração de APIs</h3>
-                    <p>Conectamos seus sistemas e aplicações através de integrações robustas e seguras. Automatizamos processos e melhoramos a eficiência operacional.</p>
-                    <ul>
-                        <li>&#10003; APIs RESTful</li>
-                        <li>&#10003; Integrações Seguras</li>
-                        <li>&#10003; Automação de Processos</li>
-                        <li>&#10003; Documentação Completa</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="pillar">
+          <div class="pi">🔒</div>
+          <h4>Qualidade no Código</h4>
+          <p>Testes automatizados, code review rigoroso e documentação viva.</p>
         </div>
-    </section>
-
-    <section id="sobre" class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <h2>Sobre a <span class="text-gradient">Js Tech</span></h2>
-                <p>Somos uma empresa especializada em soluções digitais inovadoras, com foco em desenvolvimento web, análise de negócios e integração de sistemas. Nossa missão é transformar ideias em realidade digital, proporcionando crescimento e eficiência para nossos clientes.</p>
-                <p>Com uma equipe experiente e apaixonada por tecnologia, oferecemos soluções personalizadas que atendem às necessidades específicas de cada projeto, sempre priorizando qualidade, inovação e resultados.</p>
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">&#128101;</div>
-                        <h3>Equipe Experiente</h3>
-                        <p>Profissionais qualificados</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">&#127919;</div>
-                        <h3>Foco em Resultados</h3>
-                        <p>Soluções eficazes</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">&#128161;</div>
-                        <h3>Inovação</h3>
-                        <p>Tecnologias modernas</p>
-                    </div>
-                </div>
-            </div>
-            <div class="about-image">
-                <img src="assets/hero_image.png" alt="Sobre Js Tech">
-            </div>
+        <div class="pillar">
+          <div class="pi">🧭</div>
+          <h4>Transparência Total</h4>
+          <p>Escopo claro, preços justos e comunicação direta — sem surpresas.</p>
         </div>
-    </section>
-
-    <section id="contato" class="contact-section">
-        <div class="container">
-            <h2>Entre em <span class="text-blue">Contato</span></h2>
-            <p class="section-description">Pronto para transformar seu negócio? Entre em contato conosco e descubra como podemos ajudar</p>
-            <div class="contact-grid">
-                <div class="contact-form">
-                    <h3>Solicite um Orçamento</h3>
-                    <p>Preencha o formulário e entraremos em contato em breve</p>
-                    <form id="contact-form">
-                        <div class="form-group-half">
-                            <input name="nome" type="text" placeholder="Nome" required>
-                            <input name="email" type="email" placeholder="Email" required>
-                        </div>
-                        <input name="empresa" type="text" placeholder="Empresa">
-                        <input name="telefone" type="tel" placeholder="Telefone">
-                        <textarea name="mensagem" placeholder="Descreva seu projeto..." rows="5"></textarea>
-                        <button type="submit" class="btn-primary">Enviar Mensagem</button>
-                    </form>
-                </div>
-                <div class="contact-info">
-                    <h3>Informações de Contato</h3>
-                    <div class="info-item">
-                        <span class="icon">&#9993;</span>
-                        <div>
-                            <h4>Email</h4>                     
-                            <p>
-                                <a href="mailto:contato@jstech.dev.br">contato@jstech.dev.br</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <span class="icon">&#128222;</span>
-                        <div>
-                            <h4>WhatsApp</h4>
-                            <p>
-                                <a href="https://wa.me/5562981013929">+55 (62) 98101-3929</a>
-                            </p>
-                        </div>
-                    </div>  
-                        <div class="info-item">
-                            <span class="icon">&#128205;</span>
-                            <div>
-                                <h4>Localização</h4>
-                                <p>Goiânia, GO - Brasil</p>
-                            </div>
-                    </div>
-
-                    <h3>Por que escolher a Js Tech?</h3>
-                    <ul>
-                        <li>&#10003; Experiência comprovada em projetos digitais</li>
-                        <li>&#10003; Tecnologias modernas e atualizadas</li>
-                        <li>&#10003; Suporte técnico especializado</li>
-                        <li>&#10003; Prazos de entrega respeitados</li>
-                        <li>&#10003; Preços competitivos e transparentes</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="pillar">
+          <div class="pi">📈</div>
+          <h4>Pensamento em Escala</h4>
+          <p>Arquiteturas que suportam 10× o volume atual desde o primeiro commit.</p>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <img src="assets/js_tech_logo.png" alt="Js Tech Logo" class="footer-logo">
-                    <p>Transformando negócios através de soluções digitais inovadoras e eficientes.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Serviços</h4>
-                    <ul>
-                        <li>Desenvolvimento Web</li>
-                        <li>Business Analytics</li>
-                        <li>Integração de APIs</li>
-                        <li>Consultoria Digital</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Empresa</h4>
-                    <ul>
-                        <li>Sobre Nós</li>
-                        <li>Nossa Equipe</li>
-                        <li>Portfólio</li>
-                        <li>Blog</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li>contato@jstech.dev.br</li>
-                        <li>+55 (62) 98101-3929</li>
-                        <li>Goiânia, GO</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Js Tech. Todos os direitos reservados.</p>
-            </div>
+    <div class="ar">
+      <!-- Imagem oficial — instagram_landscape da identidade visual -->
+      <div class="brand-img-wrap">
+        <img src="assets/branding/Js tech/Instagram/instagram_landscape_1080x608.png"
+             alt="Js tech — identidade visual"
+             loading="lazy">
+      </div>
+      <div class="metrics">
+        <div class="mc">
+          <div class="mclbl"><div class="mcdot" style="background:#6EE7B7"></div>UPTIME — ÚLTIMOS 12 MESES</div>
+          <div class="mcv">99.8<span style="font-size:.95rem;color:var(--muted)">%</span></div>
+          <div class="mcsub">disponibilidade em produção</div>
+          <div class="mcbar"><div class="mcfill" style="width:99.8%;background:#6EE7B7"></div></div>
         </div>
-    </footer>
+        <div class="mc">
+          <div class="mclbl"><div class="mcdot" style="background:var(--blue)"></div>SATISFAÇÃO DO CLIENTE</div>
+          <div class="mcv" style="color:var(--blue)">4.9<span style="font-size:.95rem;color:var(--muted)"> / 5</span></div>
+          <div class="mcsub">NPS médio dos projetos entregues</div>
+          <div class="mcbar"><div class="mcfill" style="width:98%;background:var(--blue)"></div></div>
+        </div>
+        <div class="mc">
+          <div class="mclbl"><div class="mcdot" style="background:#A78BFA"></div>REDUÇÃO CUSTO OPERACIONAL</div>
+          <div class="mcv" style="color:#A78BFA">−40<span style="font-size:.95rem;color:var(--muted)">%</span></div>
+          <div class="mcsub">média após modernização de stack</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="js/script.js"></script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<!-- CONTACT -->
+<section id="contato" class="contact">
+  <div class="container">
+    <div class="cl">
+      <span class="eyebrow">Entre em contato</span>
+      <h2 style="margin-top:.75rem;margin-bottom:1.1rem">Vamos construir algo incrível juntos</h2>
+      <p>Descreva seu projeto e retornamos em até 24 horas com uma proposta inicial e próximos passos claros.</p>
+      <div class="cinfo">
+        <div class="ci"><div class="ciico">✉️</div><div><h4>Email</h4><a href="mailto:contato@jstech.dev.br">contato@jstech.dev.br</a></div></div>
+        <div class="ci"><div class="ciico">💬</div><div><h4>WhatsApp</h4><a href="https://wa.me/5562981013929">+55 (62) 98101-3929</a></div></div>
+        <div class="ci"><div class="ciico">📍</div><div><h4>Localização</h4><span>Goiânia, GO — Brasil</span></div></div>
+      </div>
+    </div>
+    <div class="cform">
+      <h3>Solicitar Orçamento</h3>
+      <form id="cf">
+        <div class="f2">
+          <div class="fg"><label>Nome *</label><input name="nome" type="text" placeholder="Seu nome" required></div>
+          <div class="fg"><label>Email *</label><input name="email" type="email" placeholder="seu@email.com" required></div>
+        </div>
+        <div class="f2">
+          <div class="fg"><label>Empresa</label><input name="empresa" type="text" placeholder="Nome da empresa"></div>
+          <div class="fg"><label>Telefone</label><input name="telefone" type="tel" placeholder="+55 (62) 99999-0000"></div>
+        </div>
+        <div class="fg">
+          <label>Serviço de interesse</label>
+          <div class="sw">
+            <select name="servico">
+              <option value="">Selecione...</option>
+              <option>Desenvolvimento Web</option>
+              <option>Business Analytics</option>
+              <option>Integração de APIs</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Descreva seu projeto *</label>
+          <textarea name="mensagem" placeholder="Conte-nos sobre o projeto, desafios atuais e o que espera alcançar..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-p bsub">Enviar via WhatsApp →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER — sempre dark (identidade da marca) -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-g">
+      <div class="fb">
+        <a href="#home" class="logo">
+          <img src="assets/branding/Js tech/default_transparent_765x625.png" alt="Js tech">
+        </a>
+        <p>Consultoria especializada em arquiteturas modernas e soluções com inteligência artificial.</p>
+      </div>
+      <div class="fc">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">Desenvolvimento Web</a></li>
+          <li><a href="#servicos">Soluções com IA</a></li>
+          <li><a href="#servicos">Arquitetura Cloud</a></li>
+          <li><a href="#servicos">Business Analytics</a></li>
+          <li><a href="#servicos">Integração de APIs</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#processo">Nosso Processo</a></li>
+          <li><a href="#tecnologias">Tecnologias</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h4>Contato</h4>
+        <ul>
+          <li><span>contato@jstech.dev.br</span></li>
+          <li><span>+55 (62) 98101-3929</span></li>
+          <li><span>Goiânia, GO — Brasil</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-b">
+      <p>© 2026 Js tech. Todos os direitos reservados.</p>
+      <div class="socials">
+        <a href="#" class="soc" aria-label="LinkedIn">in</a>
+        <a href="#" class="soc" aria-label="GitHub">gh</a>
+        <a href="#" class="soc" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* scroll progress + header */
+const sp=document.getElementById('sp'),hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>{
+  sp.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+  hdr.classList.toggle('scrolled',window.scrollY>60);
+},{passive:true});
+
+/* mobile menu */
+const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+const sps=hbg.querySelectorAll('span');
+function toggleMob(open){
+  mob.classList.toggle('open',open);hbg.setAttribute('aria-expanded',open);
+  sps[0].style.transform=open?'rotate(45deg) translate(5px,5px)':'';
+  sps[1].style.opacity=open?'0':'';
+  sps[2].style.transform=open?'rotate(-45deg) translate(7px,-6px)':'';
+}
+hbg.addEventListener('click',()=>toggleMob(!mob.classList.contains('open')));
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMob(false)));
+
+/* smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(!t)return;e.preventDefault();
+    window.scrollTo({top:t.offsetTop-88,behavior:'smooth'});
+  });
+});
+
+/* terminal typewriter */
+const tout=document.getElementById('tout');
+const LINES=[
+  {c:'tp',t:'$ jstech diagnose --client="e-commerce-br"'},
+  {c:'',t:''},
+  {c:'ts',t:'  Conectando ao ambiente...'},
+  {c:'ts',t:'  Analisando stack e infraestrutura...'},
+  {c:'ts',t:'  Mapeando oportunidades de IA...'},
+  {c:'',t:''},
+  {c:'tm',t:'  # Stack detectada:'},
+  {c:'tc',t:'  ✦ Monolito PHP  (legado 6 anos)'},
+  {c:'tc',t:'  ✦ MySQL sem cache layer'},
+  {c:'tc',t:'  ✦ Deploy manual — sem CI/CD'},
+  {c:'',t:''},
+  {c:'tm',t:'  # Recomendações Js tech:'},
+  {c:'tx',t:'  → Microserviços Node.js + API Gateway'},
+  {c:'tx',t:'  → Cache Redis + CDN CloudFront (AWS)'},
+  {c:'tx',t:'  → LLM + RAG para suporte ao cliente'},
+  {c:'tx',t:'  → Pipeline CI/CD com GitHub Actions'},
+  {c:'',t:''},
+  {c:'tg',t:'  ✓ Economia estimada:  R$ 22.000 / mês'},
+  {c:'tg',t:'  ✓ Time to market:     −55%'},
+  {c:'',t:''},
+  {c:'tp',t:'$ _'},
+];
+let li=0,cur=null,curEl=null;
+function addCur(){if(cur)cur.remove();cur=document.createElement('span');cur.className='tcursor';(curEl||tout).appendChild(cur);}
+function nextLine(){
+  if(li>=LINES.length){addCur();return;}
+  const{c,t}=LINES[li++];
+  if(!t){tout.appendChild(document.createElement('br'));setTimeout(nextLine,80);return;}
+  const el=document.createElement('span');if(c)el.className=c;
+  tout.appendChild(el);tout.appendChild(document.createElement('br'));
+  curEl=el;let ci=0;
+  (function type(){
+    if(ci<t.length){if(cur)cur.remove();el.textContent+=t[ci++];addCur();setTimeout(type,16);}
+    else setTimeout(nextLine,75);
+  })();
+}
+setTimeout(nextLine,900);
+
+/* stats counters */
+function count(el,to){
+  let s=null;
+  requestAnimationFrame(function step(ts){
+    if(!s)s=ts;const p=Math.min((ts-s)/1400,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(e*to);if(p<1)requestAnimationFrame(step);else el.textContent=to;
+  });
+}
+let counted=false;
+new IntersectionObserver(ents=>{
+  if(ents[0].isIntersecting&&!counted){counted=true;
+    count(document.getElementById('cp'),50);
+    count(document.getElementById('cc'),30);
+    count(document.getElementById('cy'),5);}
+},{threshold:.5}).observe(document.querySelector('.stats'));
+
+/* form → WhatsApp */
+document.getElementById('cf').addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('button[type=submit]');
+  btn.textContent='Abrindo WhatsApp...';btn.disabled=true;
+  const d=Object.fromEntries(new FormData(this));
+  const txt=`Olá! Vim pelo site da Js tech.\n\nNome: ${d.nome}\nEmail: ${d.email}\nEmpresa: ${d.empresa||'Não informado'}\nTelefone: ${d.telefone||'Não informado'}\nServiço: ${d.servico||'Não especificado'}\n\nProjeto:\n${d.mensagem}`;
+  window.open(`https://wa.me/5562981013929?text=${encodeURIComponent(txt)}`,'_blank');
+  setTimeout(()=>{this.reset();btn.textContent='Enviar via WhatsApp →';btn.disabled=false;},2500);
+});
+</script>
 
 </body>
 </html>
-
