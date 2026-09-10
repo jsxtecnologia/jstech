@@ -248,7 +248,7 @@ section{padding:5.5rem 0}
 .sec-cols p{font-size:.95rem;max-width:44ch}
 
 .svc-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
+  display:grid;grid-template-columns:repeat(2,1fr);
   gap:1.5px;background:var(--border);
   border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
 .svc{background:var(--bg);padding:2.25rem;transition:background .2s;position:relative}
@@ -259,7 +259,7 @@ section{padding:5.5rem 0}
   width:48px;height:48px;border-radius:var(--r);
   display:flex;align-items:center;justify-content:center;
   font-size:1.3rem;margin-bottom:1.4rem}
-.ib{background:var(--blue-lo)}.ig{background:rgba(110,231,183,.08)}.ip{background:rgba(167,139,250,.08)}
+.ib{background:var(--blue-lo)}.ig{background:rgba(110,231,183,.08)}.ip{background:rgba(167,139,250,.08)}.ia{background:rgba(251,191,36,.08)}
 .svc h3{margin-bottom:.65rem;font-size:1.05rem}
 .svc>p{font-size:.88rem;line-height:1.65;margin-bottom:1.4rem}
 .svc-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
@@ -372,7 +372,6 @@ section{padding:5.5rem 0}
 /* ── RESPONSIVE ── */
 @media(max-width:1000px){
   .foot-g{grid-template-columns:1fr 1fr}
-  .svc-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:860px){
   .hnav>ul,.hnav>.btn{display:none}
@@ -502,16 +501,16 @@ section{padding:5.5rem 0}
       <div class="svc">
         <div class="sico ib">🌐</div>
         <h3>Desenvolvimento Web</h3>
-        <p>Criamos sites e aplicações web modernas, responsivas e otimizadas para performance. Utilizamos as mais recentes tecnologias para garantir a melhor experiência do usuário.</p>
+        <p>Criamos aplicações web robustas e escaláveis, do MVP ao sistema enterprise. Arquitetura moderna, experiência impecável e código que suporta o crescimento do seu negócio.</p>
         <ul class="svc-list">
-          <li>HTML, CSS &amp; JavaScript</li>
-          <li>Design Responsivo</li>
-          <li>SEO Otimizado</li>
-          <li>Performance Alta</li>
+          <li>Aplicações Web Modernas (PWA, SPA)</li>
+          <li>Design Responsivo &amp; Mobile-first</li>
+          <li>SEO Técnico &amp; Core Web Vitals</li>
+          <li>Alta Performance e Escalabilidade</li>
         </ul>
       </div>
 
-      <div class="svc ac">
+      <div class="svc">
         <div class="sico ig">📊</div>
         <h3>Business Analytics</h3>
         <p>Transformamos seus dados em insights valiosos para tomada de decisões estratégicas. Dashboards interativos e relatórios personalizados.</p>
@@ -528,10 +527,22 @@ section{padding:5.5rem 0}
         <h3>Integração de APIs</h3>
         <p>Conectamos seus sistemas e aplicações através de integrações robustas e seguras. Automatizamos processos e melhoramos a eficiência operacional.</p>
         <ul class="svc-list">
-          <li>APIs RESTful</li>
+          <li>APIs RESTful &amp; GraphQL</li>
           <li>Integrações Seguras</li>
           <li>Automação de Processos</li>
           <li>Documentação Completa</li>
+        </ul>
+      </div>
+
+      <div class="svc ac">
+        <div class="sico ia">🤖</div>
+        <h3>Soluções com IA</h3>
+        <p>Automatizamos decisões e processos com inteligência artificial — desde agentes autônomos até modelos preditivos integrados diretamente ao seu produto.</p>
+        <ul class="svc-list">
+          <li>Agentes de IA &amp; Automação</li>
+          <li>Integração de LLMs (GPT, Claude)</li>
+          <li>Modelos Preditivos &amp; Analytics</li>
+          <li>RAG &amp; Bases de Conhecimento</li>
         </ul>
       </div>
 
@@ -562,13 +573,13 @@ section{padding:5.5rem 0}
       </div>
       <div class="step">
         <div class="step-n">04</div>
-        <h4>Deploy</h4>
-        <p>Pipeline automatizado, monitoramento e rollback seguro em produção.</p>
+        <h4>Entrega</h4>
+        <p>Lançamento supervisionado com monitoramento em tempo real e reversão segura se necessário.</p>
       </div>
       <div class="step">
         <div class="step-n">05</div>
         <h4>Evolução</h4>
-        <p>Suporte contínuo e iteração baseada em dados reais de uso.</p>
+        <p>Suporte contínuo e melhorias orientadas por dados reais do negócio.</p>
       </div>
     </div>
   </div>
@@ -581,8 +592,8 @@ section{padding:5.5rem 0}
     <div class="al">
       <span class="eyebrow">Quem somos</span>
       <h2 style="margin-top:.75rem;margin-bottom:1.4rem">Software sério, feito por quem entende de negócio</h2>
-      <p>A Js tech nasceu da frustração com projetos que entregam tecnologia bonita sem resultado real. Somos uma consultoria focada em impacto: toda decisão técnica é justificada por um objetivo de negócio claro.</p>
-      <p>Com base em Goiânia e atendendo empresas em todo o Brasil, trabalhamos desde startups em estágio inicial até empresas com sistemas legados que precisam de modernização estruturada.</p>
+      <p>Muitas empresas perdem tempo e dinheiro com sistemas que não evoluem junto com o negócio. A Js tech nasceu para mudar isso — unindo rigor técnico e visão estratégica para entregar software que realmente funciona.</p>
+      <p>Com base em Goiânia e atendendo empresas em todo o Brasil, trabalhamos desde startups em estágio inicial até corporações com sistemas legados que demandam modernização sem parar a operação.</p>
       <div class="pillars">
         <div class="pillar">
           <div class="pi">⚡</div>
@@ -643,7 +654,7 @@ section{padding:5.5rem 0}
     <div class="cl">
       <span class="eyebrow">Entre em contato</span>
       <h2 style="margin-top:.75rem;margin-bottom:1.1rem">Vamos construir algo incrível juntos</h2>
-      <p>Descreva seu projeto e retornamos em até 24 horas com uma proposta inicial e próximos passos claros.</p>
+      <p>Descreva seu projeto e respondemos em até 4 horas úteis. Diagnóstico técnico inicial sem custo e sem compromisso.</p>
       <div class="cinfo">
         <div class="ci"><div class="ciico">✉️</div><div><h4>Email</h4><a href="mailto:contato@jstech.dev.br">contato@jstech.dev.br</a></div></div>
         <div class="ci"><div class="ciico">💬</div><div><h4>WhatsApp</h4><a href="https://wa.me/5562981013929">+55 (62) 98101-3929</a></div></div>
@@ -669,6 +680,7 @@ section{padding:5.5rem 0}
               <option>Desenvolvimento Web</option>
               <option>Business Analytics</option>
               <option>Integração de APIs</option>
+              <option>Soluções com IA</option>
             </select>
           </div>
         </div>
@@ -696,10 +708,9 @@ section{padding:5.5rem 0}
         <h4>Serviços</h4>
         <ul>
           <li><a href="#servicos">Desenvolvimento Web</a></li>
-          <li><a href="#servicos">Soluções com IA</a></li>
-          <li><a href="#servicos">Arquitetura Cloud</a></li>
           <li><a href="#servicos">Business Analytics</a></li>
           <li><a href="#servicos">Integração de APIs</a></li>
+          <li><a href="#servicos">Soluções com IA</a></li>
         </ul>
       </div>
       <div class="fc">
@@ -707,7 +718,6 @@ section{padding:5.5rem 0}
         <ul>
           <li><a href="#sobre">Sobre Nós</a></li>
           <li><a href="#processo">Nosso Processo</a></li>
-          <li><a href="#tecnologias">Tecnologias</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
@@ -723,7 +733,7 @@ section{padding:5.5rem 0}
     <div class="foot-b">
       <p>© 2026 Js tech. Todos os direitos reservados.</p>
       <div class="socials">
-        <a href="#" class="soc" aria-label="LinkedIn">in</a>
+        <a href="https://www.linkedin.com/company/jstech-go/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn">in</a>
         <a href="#" class="soc" aria-label="GitHub">gh</a>
         <a href="#" class="soc" aria-label="Instagram">ig</a>
       </div>
