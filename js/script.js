@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const textoCodificado = encodeURIComponent(texto);
 
             // Número do WhatsApp (sem espaços, traços ou parênteses)
-            const numero = "5562981013929"; // DDI + DDD + número
+            const numero = "5562997021616"; // DDI + DDD + número
 
             // Monta o link do WhatsApp
             const linkWhatsApp = `https://wa.me/${numero}?text=${textoCodificado}`;
